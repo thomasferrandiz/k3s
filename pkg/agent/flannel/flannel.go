@@ -27,7 +27,7 @@ import (
 	"github.com/flannel-io/flannel/pkg/backend"
 	"github.com/flannel-io/flannel/pkg/ip"
 	"github.com/flannel-io/flannel/pkg/subnet/kube"
-	"github.com/flannel-io/flannel/pkg/trafficmngr/iptables"
+	"github.com/flannel-io/flannel/pkg/trafficmngr/nftables"
 	"github.com/joho/godotenv"
 	pkgerrors "github.com/pkg/errors"
 	"github.com/rancher/wrangler/v3/pkg/merr"
@@ -91,10 +91,10 @@ func flannel(ctx context.Context, wg *sync.WaitGroup, flannelIface *net.Interfac
 	if err != nil {
 		return pkgerrors.WithMessage(err, "failed to register flannel network")
 	}
-	trafficMngr := &iptables.IPTablesManager{}
+	trafficMngr := &nftables.NFTablesManager{}
 	err = trafficMngr.Init(ctx)
 	if err != nil {
-		return pkgerrors.WithMessage(err, "failed to initialize flannel ipTables manager")
+		return pkgerrors.WithMessage(err, "failed to initialize flannel nftables manager")
 	}
 
 	if nm.IPv4Enabled() && config.Network.Empty() {

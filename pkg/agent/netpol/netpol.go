@@ -126,6 +126,10 @@ func Run(ctx context.Context, wg *sync.WaitGroup, nodeConfig *config.Node) error
 
 	iptablesCmdHandlers := make(map[v1.IPFamily]utils.IPTablesHandler, 2)
 	ipSetHandlers := make(map[v1.IPFamily]utils.IPSetHandler, 2)
+	knftablesInterfaces, err := netpol.NewKnftablesInterfaces(context.TODO(), krConfig)
+	if err != nil {
+		return pkgerrors.WithMessage(err, "failed to create knftables interfaces")
+	}
 
 	if nodeConfig.AgentConfig.EnableIPv4 {
 		iptHandler, err := iptables.NewWithProtocol(iptables.ProtocolIPv4)
@@ -177,14 +181,14 @@ func Run(ctx context.Context, wg *sync.WaitGroup, nodeConfig *config.Node) error
 	go metricsRunCheck(mc, healthCh, stopCh, wg)
 
 	npc, err := netpol.NewNetworkPolicyController(client, krConfig, podInformer, npInformer, nsInformer, &sync.Mutex{}, nil,
-		iptablesCmdHandlers, ipSetHandlers)
+		iptablesCmdHandlers, ipSetHandlers, knftablesInterfaces, true)
 	if err != nil {
 		return pkgerrors.WithMessage(err, "unable to initialize network policy controller")
 	}
 
-	podInformer.AddEventHandler(npc.PodEventHandler)
-	nsInformer.AddEventHandler(npc.NamespaceEventHandler)
-	npInformer.AddEventHandler(npc.NetworkPolicyEventHandler)
+	podInformer.AddEventHandler(npc.PodEventHandler())
+	nsInformer.AddEventHandler(npc.NamespaceEventHandler())
+	npInformer.AddEventHandler(npc.NetworkPolicyEventHandler())
 
 	wg.Add(1)
 	logrus.Infof("Starting network policy controller version %s, built on %s, %s", version.Version, version.BuildDate, runtime.Version())
