@@ -1305,8 +1305,8 @@ github.com/syndtr/goleveldb v1.0.0 h1:fBdIW9lB4Iz0n9khmH8w27SJ3QEJ7+IgjPEwGSZiFd
 github.com/syndtr/goleveldb v1.0.0/go.mod h1:ZVVdQEZoIme9iO1Ch2Jdy24qqXrMMOU6lpPAyBWyWuQ=
 github.com/tchap/go-patricia/v2 v2.3.2 h1:xTHFutuitO2zqKAQ5rCROYgUb7Or/+IC3fts9/Yc7nM=
 github.com/tchap/go-patricia/v2 v2.3.2/go.mod h1:VZRHKAb53DLaG+nA9EaYYiaEx6YztwDlLElMsnSHD4k=
-github.com/thomasferrandiz/kube-router/v2 v2.0.0-20260305100324-f057d193589c h1:oQTFWYVByHQfBatArHfnG+3lg44QGyEedpz4NsPA/TI=
-github.com/thomasferrandiz/kube-router/v2 v2.0.0-20260305100324-f057d193589c/go.mod h1:AVQKJWL74DFQxKWgsvQWV5yP91UtxGXAU0vKN3Ut5aI=
+github.com/thomasferrandiz/kube-router/v2 v2.0.0-20260309143303-1ed1ba887170 h1:gOMaGr/70MFChjqiq72H/8XOT0dnBChAUtA9CSH+XHI=
+github.com/thomasferrandiz/kube-router/v2 v2.0.0-20260309143303-1ed1ba887170/go.mod h1:AVQKJWL74DFQxKWgsvQWV5yP91UtxGXAU0vKN3Ut5aI=
 github.com/tidwall/btree v1.8.1 h1:27ehoXvm5AG/g+1VxLS1SD3vRhp/H7LuEfwNvddEdmA=
 github.com/tidwall/btree v1.8.1/go.mod h1:jBbTdUWhSZClZWoDg54VnvV7/54modSOzDN7VXftj1A=
 github.com/tidwall/gjson v1.18.0 h1:FIDeeyB800efLX89e5a8Y0BNH+LOngJyGrIWxG2FKQY=
