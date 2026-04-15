@@ -126,6 +126,7 @@ func Run(ctx context.Context, wg *sync.WaitGroup, nodeConfig *config.Node) error
 
 	iptablesCmdHandlers := make(map[v1.IPFamily]utils.IPTablesHandler, 2)
 	ipSetHandlers := make(map[v1.IPFamily]utils.IPSetHandler, 2)
+	krConfig.UseNftablesForNetpol = true
 	knftablesInterfaces, err := netpol.NewKnftablesInterfaces(context.TODO(), krConfig)
 	if err != nil {
 		return pkgerrors.WithMessage(err, "failed to create knftables interfaces")
